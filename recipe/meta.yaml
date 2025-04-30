@@ -11,7 +11,7 @@ source:
     - sympy-1.14.patch
 
 build:
-  number: 39
+  number: 40
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
