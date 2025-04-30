@@ -7,22 +7,27 @@ package:
 source:
   url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-{{ version }}.tar.gz
   sha256: 341a1046cbe0f5f2eb26630c2f71f378b0dca51daf9892a54a2ff193970371e9
+  patches:
+    - sympy-1.14.patch
 
 build:
-  number: 39
+  number: 40
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - numpy
     - setuptools
     - sympy >=1
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - FIAT
 about:
