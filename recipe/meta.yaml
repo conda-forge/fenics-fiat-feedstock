@@ -17,14 +17,17 @@ build:
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
+    - setuptools
   run:
-    - python >=3.7
+    - python >={{ python_min }}
     - numpy
     - setuptools
     - sympy >=1
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - FIAT
 about:
