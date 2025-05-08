@@ -1,0 +1,26 @@
+From c39edfdcf9142db736e13744883e3160e061159d Mon Sep 17 00:00:00 2001
+From: Sebastian Blauth <sebastian.blauth@itwm.fraunhofer.de>
+Date: Wed, 30 Apr 2025 08:27:21 +0200
+Subject: [PATCH] Fix a bug introduced with sympy 1.14
+
+Now, a TypeError is raised when passing a list to sympy.diff.
+This commit fixes the associated behavior.
+---
+ FIAT/expansions.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/FIAT/expansions.py b/FIAT/expansions.py
+index df046e4..cf97cd7 100644
+--- a/FIAT/expansions.py
++++ b/FIAT/expansions.py
+@@ -46,7 +46,7 @@ def _tabulate_dpts(tabulator, D, n, order, pts):
+         out = []
+         try:
+             out = [sympy.diff(F, X[j]) for j in range(D)]
+-        except (AttributeError, ValueError):
++        except (AttributeError, ValueError, TypeError):
+             # Intercept errors like
+             #  AttributeError: 'list' object has no attribute
+             #  'free_symbols'
+--
+2.49.0
