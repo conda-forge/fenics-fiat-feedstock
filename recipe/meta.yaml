@@ -9,9 +9,10 @@ source:
   sha256: 341a1046cbe0f5f2eb26630c2f71f378b0dca51daf9892a54a2ff193970371e9
   patches:
     - sympy-1.14.patch
+    - setuptools82.patch
 
 build:
-  number: 40
+  number: 41
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv
 
@@ -23,13 +24,14 @@ requirements:
   run:
     - python >={{ python_min }}
     - numpy
-    - setuptools
     - sympy >=1
+
 test:
   requires:
     - python {{ python_min }}
   imports:
     - FIAT
+
 about:
   home: https://www.fenicsproject.org
   license: LGPL-3.0-or-later
